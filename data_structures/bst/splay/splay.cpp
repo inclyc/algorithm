@@ -1,12 +1,14 @@
 #include <cstddef>
 #include <cstdio>
 
-struct SplayNode {
+namespace Splay {
+
+struct Node {
   // childs of this node
-  SplayNode *ch[2];
+  Node *ch[2];
 
   // father
-  SplayNode *fa;
+  Node *fa;
 
   // metadata
   int val, size, weight;
@@ -36,7 +38,7 @@ struct SplayNode {
     this->maintain();
   }
 
-  void splay(SplayNode *target) {
+  void splay(Node *target) {
     for (; fa && fa != target; rotate())
       if (fa->fa && fa->fa != target) {
         if (rel() == fa->rel())
@@ -47,7 +49,7 @@ struct SplayNode {
   }
 
   // greatest lesser than v
-  SplayNode *prev(int v) {
+  Node *prev(int v) {
     auto p = this, ans = this;
     for (; p;) {
       if (p->val < v) {
@@ -61,7 +63,7 @@ struct SplayNode {
   }
 
   // least greater than v
-  SplayNode *suc(int v) {
+  Node *suc(int v) {
     auto p = this, ans = this;
     for (; p;) {
       if (p->val > v) {
@@ -74,38 +76,36 @@ struct SplayNode {
   }
 };
 
-namespace Splay {
-
 const int inf = 0x3f3f3f3f;
 const int maxn = 1e5 + 10;
 
-SplayNode nodes[maxn];
+Node nodes[maxn];
 
-SplayNode *root;
+Node *root;
 
-SplayNode *alloc(int val) {
-  static SplayNode *end = nodes;
+Node *alloc(int val) {
+  static Node *end = nodes;
   end->val = val;
   end->weight = end->size = 1;
   end->fa = end->ch[1] = end->ch[0] = nullptr;
   return end++;
 }
 
-void splay(SplayNode *node, SplayNode *target = nullptr) {
+void splay(Node *node, Node *target = nullptr) {
   node->splay(target);
   if (!target) {
     root = node;
   }
 }
 
-SplayNode *&ipoint(int val) {
+Node *&ipoint(int val) {
   auto prev = root->prev(val), suc = root->suc(val);
   splay(prev);
   splay(suc, prev);
   return suc->ch[0];
 }
 
-SplayNode *insert(int val) {
+Node *insert(int val) {
   auto p = ipoint(val);
   if (p) {
     p->weight++;
