@@ -4,9 +4,9 @@
 
 // partition on range: [start, end) of array A
 // returns "mid" such that
-// index of range: [start, mid] <= A[mid]
-// index of range: (mid, end) > A[mid]
-int partition(int A[], int start, int end) {
+// index of range: [start, mid) <= A[mid]
+// index of range: [mid, end) > A[mid]
+static int partition(int A[], int start, int end) {
   if (start + 1 >= end)
     return start;
 
@@ -22,20 +22,20 @@ int partition(int A[], int start, int end) {
     }
   }
   std::swap(A[pivot], A[mid - 1]);
-  return mid - 1;
+  return mid;
 }
 
-void quick_sort(int A[], int start, int end) {
+static void quick_sort(int A[], int start, int end) {
   if (start + 1 >= end)
     return;
   int mid = partition(A, start, end);
   quick_sort(A, start, mid);
-  quick_sort(A, mid + 1, end);
+  quick_sort(A, mid, end);
 }
 
-const int TEST_ARRAY_SIZE = 10;
+const int TEST_ARRAY_SIZE = 1000000;
 
-int test_array[TEST_ARRAY_SIZE];
+static int test_array[TEST_ARRAY_SIZE];
 
 int main() {
   for (int i = 0; i < TEST_ARRAY_SIZE; i++) {
