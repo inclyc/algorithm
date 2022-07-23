@@ -32,10 +32,9 @@
 *.out
 *.app
 
-sort/quick_sort/quick_sort
-
-data_structures/bst/splay/splay
-data_structures/bst/ziptree/ziptree
-data_structures/bst/ziptree_ptr/ziptree_ptr
 
 *.in
+
+build
+
+.xmake
