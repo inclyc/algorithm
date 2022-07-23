@@ -11,5 +11,9 @@
 本项目每个文件都可以单独构建，直接在目录下使用命令：
 
 ```
-make
+xmake
 ```
+
+# 参考
+
+[xmake](https://xmake.io/#/zh-cn/)
