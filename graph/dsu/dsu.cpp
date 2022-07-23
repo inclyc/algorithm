@@ -62,7 +62,6 @@ int DSU::findFa(int u) {
 } // namespace DSU
 
 int main() {
-  freopen("test.in", "r", stdin);
   int n, m;
   ull ans = 0;
   const ull mod = 998244353ll;
