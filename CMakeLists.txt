@@ -7,9 +7,9 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS true)
 
 # Enable warnings
 if(MSVC)
-  add_compile_options(/W4 /WX)
+  add_compile_options(/W4)
 else()
-  add_compile_options(-Wall -Wextra -pedantic -Werror)
+  add_compile_options(-Wall -Wextra -pedantic)
   add_compile_options(-fsanitize=address)
   add_link_options(-fsanitize=address)
 endif()
