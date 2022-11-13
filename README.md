@@ -18,7 +18,3 @@ mkdir build && cd $_
 ```sh
 cmake .. && cmake --build .
 ```
-
-# 参考
-
-[xmake](https://xmake.io/#/zh-cn/)
