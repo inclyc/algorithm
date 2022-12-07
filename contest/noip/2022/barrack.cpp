@@ -150,9 +150,8 @@ auto treeDp(int n, const Graph &G, const vector<int> &nW,
       if (vis[v])
         continue;
       dfs(v);
-      auto Eu = E[u];
+      D[u] = 2 * D[v] * F[u] + 2 * D[u] * F[v] + E[u] * E[v];
       E[u] = (E[v] + 2 * F[v]) * E[u] + F[u] * E[v];
-      D[u] = 2 * D[v] * F[u] + 2 * D[u] * F[v] + Eu * E[v];
       F[u] *= 2 * F[v];
     }
   };
